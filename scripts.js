@@ -21,19 +21,19 @@ function getComputerChoice(){
 
 
 function playRound(playerSelection, computerSelection){
-    playerSelection = playerSelection.toLowerCase();
+
     let result = ``;
 
     if(playerSelection === computerSelection){
         result += `
-        Your Choice: ${playerSelection}
-        Computer Choice: ${computerSelection}
-        It's a Tie!`;
+        Your Choice: ${playerSelection}<br>
+        Computer Choice: ${computerSelection}<br>
+        It's a Tie!<br>`;
 
-        console.log(result);
+        
         tie++;
 
-        return 'tie';
+        return result;
 
     }else if(
         (playerSelection === 'rock' && computerSelection === 'scissor') ||
@@ -41,38 +41,52 @@ function playRound(playerSelection, computerSelection){
         (playerSelection === 'scissor' && computerSelection === 'paper')){
 
         result += `
-        Your Choice: ${playerSelection}
-        Computer Choice: ${computerSelection}
-        You Win!`;
+        Your Choice: ${playerSelection}<br>
+        Computer Choice: ${computerSelection}<br>
+        You Win!<br>`;
 
-        console.log(result);
+        
         playerScore++;
 
-        return 'win';
+        return result;
 
         }else{
         result += `
-        Your Choice: ${playerSelection}
-        Computer Choice: ${computerSelection}
-        You Lose!`;
+        Your Choice: ${playerSelection}<br>
+        Computer Choice: ${computerSelection}<br>
+        You Lose!<br>`;
 
-        console.log(result);
+        
         compScore++;
 
-        return 'lose';
+        return result;
 
         }
 
 };
 
 
-function playGame(){
+function playGame(event){
     
-    const playerSelection = prompt('Enter selection(Rock,Paper,Scissor):').toLowerCase();
     const computerSelection = getComputerChoice();
+    const playerSelection = event.target.value.toLowerCase();
 
-    playRound(playerSelection, computerSelection);
+    const roundResult = playRound(playerSelection, computerSelection);
+    result.innerHTML = roundResult;
+
 
 };
 
-playGame();
+// playGame();
+
+//DOM
+
+const Btn = document.querySelectorAll('.rpsBtn');
+Btn.forEach(function(btn){
+    btn.addEventListener('click', playGame);
+});
+
+const output = document.querySelector('.output');
+const result = document.querySelector('.result');
+
+output.appendChild(result);
