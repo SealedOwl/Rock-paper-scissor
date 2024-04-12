@@ -13,6 +13,7 @@ function getComputerChoice(){
     return compChoice;
 };
 
+
 function playRound(playerSelection, computerSelection){
     playerSelection = playerSelection.toLowerCase();
     let result = ``;
@@ -22,21 +23,59 @@ function playRound(playerSelection, computerSelection){
         Your Choice: ${playerSelection}
         Computer Choice: ${computerSelection}
         It's a Tie!`;
+
+        console.log(result);
+
+        return 'tie';
+
     }else if(
         (playerSelection === 'rock' && computerSelection === 'scissor') ||
         (playerSelection === 'paper' && computerSelection === 'rock') ||
         (playerSelection === 'scissor' && computerSelection === 'paper')){
 
-            result += `
+        result += `
         Your Choice: ${playerSelection}
         Computer Choice: ${computerSelection}
         You Win!`;
+
+        console.log(result);
+
+        return 'win';
+
         }else{
-            result += `
+        result += `
         Your Choice: ${playerSelection}
         Computer Choice: ${computerSelection}
         You Lose!`;
+
+        console.log(result);
+
+        return 'lose';
+
         }
 
-    return result;
 };
+
+
+function playGame(){
+    
+    const playerSelection = prompt('Enter selection(Rock,Paper,Scissor):').toLowerCase();
+    const computerSelection = getComputerChoice();
+
+    let playerScore = 0;
+    let compScore = 0;
+    let tie = 0;
+
+    let result = playRound(playerSelection, computerSelection);
+
+    if(result === 'tie'){
+        tie++;
+    }else if(result === 'win'){
+        playerScore++;
+    }else{
+        compScore++;
+    }
+
+};
+
+playGame();
