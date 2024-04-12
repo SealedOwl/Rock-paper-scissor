@@ -1,3 +1,9 @@
+
+let playerScore = 0;
+let compScore = 0;
+let tie = 0;
+
+
 function getComputerChoice(){
     const randomNum = Math.random();
     let compChoice = "";
@@ -25,6 +31,7 @@ function playRound(playerSelection, computerSelection){
         It's a Tie!`;
 
         console.log(result);
+        tie++;
 
         return 'tie';
 
@@ -39,6 +46,7 @@ function playRound(playerSelection, computerSelection){
         You Win!`;
 
         console.log(result);
+        playerScore++;
 
         return 'win';
 
@@ -49,6 +57,7 @@ function playRound(playerSelection, computerSelection){
         You Lose!`;
 
         console.log(result);
+        compScore++;
 
         return 'lose';
 
@@ -62,19 +71,7 @@ function playGame(){
     const playerSelection = prompt('Enter selection(Rock,Paper,Scissor):').toLowerCase();
     const computerSelection = getComputerChoice();
 
-    let playerScore = 0;
-    let compScore = 0;
-    let tie = 0;
-
-    let result = playRound(playerSelection, computerSelection);
-
-    if(result === 'tie'){
-        tie++;
-    }else if(result === 'win'){
-        playerScore++;
-    }else{
-        compScore++;
-    }
+    playRound(playerSelection, computerSelection);
 
 };
 
