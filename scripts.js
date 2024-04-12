@@ -82,9 +82,34 @@ function playGame(event){
     playerScorePara.textContent = `Player Score: ${playerScore}`;
     compScorePara.textContent = `Computer Score: ${compScore}`;
 
+    //Check final victor
+    const isGameOver = Checkwin(playerScore,compScore);
+
+    if(isGameOver){
+        playerScore = 0;
+        compScore = 0;
+
+        playerScorePara.textContent = `Player Score: ${playerScore}`;
+        compScorePara.textContent = `Computer Score: ${compScore}`;
+    
+    }
+
 
 
 };
+
+function Checkwin(playerScore, computerScore){
+    if(playerScore === 5 || computerScore === 5){
+        alert(`
+        Game Over!
+        Your Score: ${playerScore}
+        Computer Score: ${computerScore}
+        ${(playerScore===5?`You`:`Computer`)} Won!`);
+
+        return true;
+
+    }return false;
+}
 
 // playGame();
 
