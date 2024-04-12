@@ -71,8 +71,17 @@ function playGame(event){
     const computerSelection = getComputerChoice();
     const playerSelection = event.target.value.toLowerCase();
 
+    //round result to show in output
     const roundResult = playRound(playerSelection, computerSelection);
     result.innerHTML = roundResult;
+
+    // Display scores
+    const playerScorePara = document.querySelector('.playerScore');
+    const compScorePara = document.querySelector('.computerScore');
+
+    playerScorePara.textContent = `Player Score: ${playerScore}`;
+    compScorePara.textContent = `Computer Score: ${compScore}`;
+
 
 
 };
@@ -86,7 +95,9 @@ Btn.forEach(function(btn){
     btn.addEventListener('click', playGame);
 });
 
+// output the result of the round in web page
 const output = document.querySelector('.output');
 const result = document.querySelector('.result');
 
 output.appendChild(result);
+
